@@ -26,10 +26,12 @@ public class StockSearchActivity extends Activity {
             @Override
             public void onClick(View view) {
                 if (!stockSearchText.getText().toString().isEmpty()) {
+                    System.out.println(stockSearchText.getText().toString());
+                    String toSend = stockSearchText.getText().toString();
                     Intent passIntent = new Intent();
-                    passIntent.putExtra(STOCK_SYMBOL, stockSearchText.getText().toString());
-                    setResult(11, passIntent);
-                    //startActivity(passIntent);
+                    passIntent.putExtra("symbol", toSend);
+                    setResult(RESULT_OK, passIntent);
+                    finish();
                 } else {
                     //Toast.makeText(StockSearchActivity.class, "Symbol does not exist", Toast.LENGTH_SHORT).show();
                     System.out.println("failed");

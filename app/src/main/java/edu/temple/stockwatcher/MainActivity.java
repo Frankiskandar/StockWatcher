@@ -13,18 +13,31 @@ public class MainActivity extends AppCompatActivity implements PortfolioFragment
 
     StockDetailsFragment receiver;
     PortfolioFragment portfolioFragment;
+    PortfolioFragment sender;
     boolean twoPanes;
-    private final int POPUP_ACTIVITY = 11;
+    private final int POPUP_ACTIVITY = 1;
+    String newStock;
+    public Portfolio portfolio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        portfolio = new Portfolio();
+        portfolio.add(new Stock("Microsoft", "MSFT"));
+        portfolio.add(new Stock("Google", "Goog"));
+
         twoPanes = (findViewById(R.id.stockdetails_frag)!= null);
         receiver = new StockDetailsFragment();
 
-        PortfolioFragment sender = new PortfolioFragment();
+
+        sender = new PortfolioFragment();
+
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(PortfolioFragment.BUNDLE_KEY, portfolio);
+        sender.setArguments(bundle);
+
         getFragmentManager()
                 .beginTransaction()
                 .add(R.id.portfolio_frag, sender)
@@ -83,16 +96,24 @@ public class MainActivity extends AppCompatActivity implements PortfolioFragment
     }
 
     private void searchPopUp() {
-        startActivityForResult(new Intent(this, StockSearchActivity.class), POPUP_ACTIVITY);
+        Intent intent = new Intent(this, StockSearchActivity.class);
+        startActivityForResult(intent, POPUP_ACTIVITY);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == POPUP_ACTIVITY && resultCode == 11) {
-            portfolioFragment.addStock(new Stock("", data.getStringExtra(StockSearchActivity.STOCK_SYMBOL)));
-
+        if (requestCode == POPUP_ACTIVITY) {
+            if (resultCode == RESULT_OK) {
+                newStock = data.getStringExtra("symbol");
+                sender.addStock(new Stock("", newStock));
+                System.out.println(data.getStringExtra("symbol"));
+                System.out.println("success");
+            }
+            else if (resultCode == RESULT_CANCELED) {
+                return;
+            }
         }
     }
 }

@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import static android.R.attr.defaultValue;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,6 +26,7 @@ public class PortfolioFragment extends Fragment {
     stockSelectedInterface parent;
     ListView portfolioList;
     Portfolio portfolio;
+    public static String BUNDLE_KEY = "portfolio";
 
     public PortfolioFragment() {
         // Required empty public constructor
@@ -39,11 +42,20 @@ public class PortfolioFragment extends Fragment {
         portfolioList = (ListView) v.findViewById(R.id.listView);
 
 
-        portfolio = new Portfolio();
-        portfolio.add(new Stock("Microsoft", "MSFT"));
-        portfolio.add(new Stock("Google", "Goog"));
+        //portfolio = new Portfolio();
+//        portfolio.add(new Stock("Microsoft", "MSFT"));
+//        portfolio.add(new Stock("Google", "Goog"));
+
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            portfolio = (Portfolio) bundle.getSerializable(BUNDLE_KEY);
+        }
+
+        System.out.println(portfolio.size());
+
         PortfolioAdapter adapter = new PortfolioAdapter(getContext(),portfolio);
         portfolioList.setAdapter(adapter);
+        //addStock(new Stock("TESLA", "TSLA"));
 
         portfolioList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -73,7 +85,6 @@ public class PortfolioFragment extends Fragment {
         super.onDetach();
         parent = null;
     }
-
 
 
     public interface stockSelectedInterface {
