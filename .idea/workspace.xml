@@ -12,8 +12,7 @@
     <list default="true" id="1fc694a8-de70-44cd-9544-6cec84930609" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/edu/temple/stockwatcher/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/edu/temple/stockwatcher/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/edu/temple/stockwatcher/PortfolioFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/edu/temple/stockwatcher/PortfolioFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/edu/temple/stockwatcher/StockSearchActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/edu/temple/stockwatcher/StockSearchActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/edu/temple/stockwatcher/StockDetailsFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/edu/temple/stockwatcher/StockDetailsFragment.java" />
     </list>
     <ignored path="StockWatcher.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -92,13 +91,12 @@
       <file leaf-file-name="PortfolioFragment.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/edu/temple/stockwatcher/PortfolioFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="814">
-              <caret line="94" column="14" selection-start-line="94" selection-start-column="14" selection-end-line="94" selection-end-column="14" />
+            <state relative-caret-position="660">
+              <caret line="95" column="8" selection-start-line="95" selection-start-column="8" selection-end-line="95" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1813#2080#0" expanded="true" />
                 <element signature="e#2079#2080#0" expanded="true" />
-                <marker date="1493586499988" expanded="true" signature="1239:1388" ph="//..." />
                 <marker date="1493586499988" expanded="true" signature="2167:2469" ph="{...}" />
                 <marker date="1493586499988" expanded="true" signature="2512:2568" ph="{...}" />
               </folding>
@@ -119,11 +117,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/edu/temple/stockwatcher/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="108" column="52" selection-start-line="108" selection-start-column="52" selection-end-line="108" selection-end-column="52" />
+            <state relative-caret-position="-46">
+              <caret line="64" column="34" selection-start-line="64" selection-start-column="34" selection-end-line="64" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -172,13 +170,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StockDetailsFragment.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="StockDetailsFragment.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/edu/temple/stockwatcher/StockDetailsFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="924">
-              <caret line="51" column="43" selection-start-line="51" selection-start-column="43" selection-end-line="51" selection-end-column="43" />
+            <state relative-caret-position="374">
+              <caret line="70" column="21" selection-start-line="70" selection-start-column="21" selection-end-line="70" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#1982#2980#0" expanded="true" />
+                <element signature="e#2979#2980#0" expanded="true" />
+                <element signature="e#3050#3582#0" expanded="true" />
+                <element signature="e#3581#3582#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -2022,12 +2024,12 @@
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_stock_details.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_portfolio.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/edu/temple/stockwatcher/StockDetailsFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/edu/temple/stockwatcher/Portfolio.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/edu/temple/stockwatcher/PortfolioAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/edu/temple/stockwatcher/StockSearchActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/edu/temple/stockwatcher/PortfolioFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/edu/temple/stockwatcher/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/edu/temple/stockwatcher/PortfolioFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/edu/temple/stockwatcher/StockDetailsFragment.java" />
       </list>
     </option>
   </component>
@@ -2563,7 +2565,9 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
@@ -2759,10 +2763,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/edu/temple/stockwatcher/StockDetailsFragment.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/edu/temple/stockwatcher/StockSearchActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="924">
-          <caret line="51" column="43" selection-start-line="51" selection-start-column="43" selection-end-line="51" selection-end-column="43" />
+        <state relative-caret-position="175">
+          <caret line="33" column="29" selection-start-line="33" selection-start-column="29" selection-end-line="33" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#796#1545#0" expanded="true" />
+            <element signature="e#1544#1545#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/edu/temple/stockwatcher/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-46">
+          <caret line="64" column="34" selection-start-line="64" selection-start-column="34" selection-end-line="64" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -2780,39 +2796,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/edu/temple/stockwatcher/StockSearchActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="33" column="29" selection-start-line="33" selection-start-column="29" selection-end-line="33" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#796#1545#0" expanded="true" />
-            <element signature="e#1544#1545#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/edu/temple/stockwatcher/PortfolioFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="814">
-          <caret line="94" column="14" selection-start-line="94" selection-start-column="14" selection-end-line="94" selection-end-column="14" />
+        <state relative-caret-position="660">
+          <caret line="95" column="8" selection-start-line="95" selection-start-column="8" selection-end-line="95" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1813#2080#0" expanded="true" />
             <element signature="e#2079#2080#0" expanded="true" />
-            <marker date="1493586499988" expanded="true" signature="1239:1388" ph="//..." />
             <marker date="1493586499988" expanded="true" signature="2167:2469" ph="{...}" />
             <marker date="1493586499988" expanded="true" signature="2512:2568" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/edu/temple/stockwatcher/MainActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/edu/temple/stockwatcher/StockDetailsFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="108" column="52" selection-start-line="108" selection-start-column="52" selection-end-line="108" selection-end-column="52" />
+        <state relative-caret-position="374">
+          <caret line="70" column="21" selection-start-line="70" selection-start-column="21" selection-end-line="70" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#1982#2980#0" expanded="true" />
+            <element signature="e#2979#2980#0" expanded="true" />
+            <element signature="e#3050#3582#0" expanded="true" />
+            <element signature="e#3581#3582#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -63,10 +63,6 @@ public class MainActivity extends AppCompatActivity implements PortfolioFragment
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()) {
             case R.id.add_button :
-                //if add button is clicked
-//                Toast.makeText(this, "Add button selected", Toast.LENGTH_SHORT).show();
-//                Intent intent = new Intent(this, StockSearchActivity.class);
-//                startActivity(intent);
                 searchPopUp();
                 return true;
 
