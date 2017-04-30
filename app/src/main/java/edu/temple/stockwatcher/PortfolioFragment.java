@@ -7,6 +7,7 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 
@@ -20,6 +21,7 @@ public class PortfolioFragment extends Fragment {
 
     //private OnFragmentInteractionListener mListener;
 
+    stockSelectedInterface parent;
     ListView portfolioList;
     Portfolio portfolio;
 
@@ -43,46 +45,43 @@ public class PortfolioFragment extends Fragment {
         PortfolioAdapter adapter = new PortfolioAdapter(getContext(),portfolio);
         portfolioList.setAdapter(adapter);
 
+        portfolioList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                ((stockSelectedInterface) getActivity()).stockSelected(portfolio.get(i));
+            }
+        });
+
 
         return v;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-/*    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof stockSelectedInterface) {
+            parent = (stockSelectedInterface) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+                    + " must implement stockSelectedInterface");
         }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
+        parent = null;
     }
 
-    *//**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     *//*
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }*/
+
+
+    public interface stockSelectedInterface {
+        public void stockSelected(Stock stock);
+    }
+
+    public void addStock(Stock stock) {
+        portfolio.add(stock);
+        ((PortfolioAdapter) portfolioList.getAdapter()).notifyDataSetChanged();
+    }
 }

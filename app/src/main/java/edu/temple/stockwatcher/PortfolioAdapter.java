@@ -40,7 +40,7 @@ public class PortfolioAdapter extends BaseAdapter {
         TextView tv = new TextView(context);// must provide context
 
         //set its value to be object
-        tv.setText(portfolio.get(i).getCompanyName());
+        tv.setText(portfolio.get(i).getSymbol());
         return tv;
     }
 }

@@ -1,10 +1,7 @@
 package edu.temple.stockwatcher;
 
-import android.content.Context;
-import android.media.Image;
-import android.net.Uri;
-import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +17,8 @@ public class StockDetailsFragment extends Fragment {
     ImageView graphImageView;
     TextView companyName;
     TextView stockPrice;
-    String stockSymbol = "MSFT";
+    //String stockSymbol = "MSFT";
+
 
     public StockDetailsFragment() {
         // Required empty public constructor
@@ -30,20 +28,31 @@ public class StockDetailsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         v = inflater.inflate(R.layout.fragment_stock_details, container, false);
 
         graphImageView = (ImageView) v.findViewById(R.id.graph);
         companyName = (TextView) v.findViewById(R.id.stock_name);
         stockPrice = (TextView) v.findViewById(R.id.stock_price);
 
-        showGraph();
-
         return v;
     }
 
-    public void showGraph() {//will take stock param
-        Picasso.with(graphImageView.getContext()).load("https://chart.yahoo.com/z?t=1d&s="+stockSymbol).into(graphImageView);
+    public void showGraph(Stock stock) {
+        Picasso.with(graphImageView.getContext()).load("https://chart.yahoo.com/z?t=1d&s="+stock.getSymbol()).into(graphImageView);
+    }
+
+    public void showCompanyName(Stock stock) {
+        companyName.setText(String.valueOf(stock.getCompanyName()));
+    }
+
+    public void showStockPrice(Stock stock) {
+        //stockPrice.setText(String.valueOf(stock.getPrice()));
+    }
+
+    public void showStockInfo(Stock stock){
+        showCompanyName(stock);
+        showGraph(stock);
+        //showStockPrice(stock);
     }
 
 

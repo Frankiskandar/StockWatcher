@@ -1,16 +1,18 @@
 package edu.temple.stockwatcher;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
 
 public class StockSearchActivity extends Activity {
 
     AutoCompleteTextView stockSearchText;
     Button addButton;
+    public static int SYMBOL_EXISTS = 20;
+    public static String STOCK_SYMBOL = "stock_symbol";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,5 +22,19 @@ public class StockSearchActivity extends Activity {
         stockSearchText = (AutoCompleteTextView) findViewById(R.id.searchEditText);
         addButton = (Button) findViewById(R.id.addStock_button);
 
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!stockSearchText.getText().toString().isEmpty()) {
+                    Intent passIntent = new Intent();
+                    passIntent.putExtra(STOCK_SYMBOL, stockSearchText.getText().toString());
+                    setResult(11, passIntent);
+                    //startActivity(passIntent);
+                } else {
+                    //Toast.makeText(StockSearchActivity.class, "Symbol does not exist", Toast.LENGTH_SHORT).show();
+                    System.out.println("failed");
+                }
+            }
+        });
     }
 }
