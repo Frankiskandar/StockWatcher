@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements PortfolioFragment
 
         getFragmentManager()
                 .beginTransaction()
-                .add(R.id.portfolio_frag, sender)
+                .replace(R.id.portfolio_frag, sender)
                 .commit();
 
         receiver = new StockDetailsFragment();
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements PortfolioFragment
         if(twoPanes){
             getFragmentManager()
                     .beginTransaction()
-                    .add(R.id.stockdetails_frag, receiver)
+                    .replace(R.id.stockdetails_frag, receiver)
                     .commit();
         }
     }
