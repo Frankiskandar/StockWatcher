@@ -5,6 +5,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.Writer;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import java.util.logging.Logger;
 
@@ -18,6 +25,8 @@ public class MainActivity extends AppCompatActivity implements PortfolioFragment
     private final int POPUP_ACTIVITY = 1;
     String newStock;
     public Portfolio portfolio;
+    File file;
+    String fileName = "stockList";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,14 +34,30 @@ public class MainActivity extends AppCompatActivity implements PortfolioFragment
         setContentView(R.layout.activity_main);
 
         portfolio = new Portfolio();
-        portfolio.add(new Stock("Microsoft", "MSFT"));
-        portfolio.add(new Stock("Google", "Goog"));
+//        portfolio.add(new Stock("Microsoft", "MSFT"));
+//        portfolio.add(new Stock("Google", "Goog"));
+
+
 
         twoPanes = (findViewById(R.id.stockdetails_frag)!= null);
         receiver = new StockDetailsFragment();
-
-
         sender = new PortfolioFragment();
+
+        File dir = this.getFilesDir();
+        file = new File(dir, fileName);
+
+        if (file.exists()) {
+            try {
+                BufferedReader br = new BufferedReader(new FileReader(file));
+                String line;
+                while ((line = br.readLine()) != null) {
+                    portfolio.add(new Stock("", line.toString()));
+                }
+                br.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
         Bundle bundle = new Bundle();
         bundle.putSerializable(PortfolioFragment.BUNDLE_KEY, portfolio);
@@ -51,6 +76,8 @@ public class MainActivity extends AppCompatActivity implements PortfolioFragment
                     .replace(R.id.stockdetails_frag, receiver)
                     .commit();
         }
+
+
     }
 
     @Override
@@ -105,7 +132,6 @@ public class MainActivity extends AppCompatActivity implements PortfolioFragment
                 newStock = data.getStringExtra("symbol");
                 sender.addStock(new Stock("", newStock));
                 System.out.println(data.getStringExtra("symbol"));
-                System.out.println("success");
             }
             else if (resultCode == RESULT_CANCELED) {
                 return;

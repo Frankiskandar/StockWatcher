@@ -1,24 +1,26 @@
 package edu.temple.stockwatcher;
 
-import android.content.Context;
-import android.net.Uri;
-import android.os.Bundle;
 import android.app.Fragment;
+import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import static android.R.attr.defaultValue;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.Writer;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.logging.Logger;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link PortfolioFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- */
+
 public class PortfolioFragment extends Fragment {
 
     //private OnFragmentInteractionListener mListener;
@@ -27,6 +29,14 @@ public class PortfolioFragment extends Fragment {
     ListView portfolioList;
     Portfolio portfolio;
     public static String BUNDLE_KEY = "portfolio";
+    Logger log = Logger.getAnonymousLogger();
+    String cname;
+    String cprice;
+    ArrayList<String> symbolList;
+    String fileName = "stockList";
+    File file;
+
+
 
     public PortfolioFragment() {
         // Required empty public constructor
@@ -41,11 +51,6 @@ public class PortfolioFragment extends Fragment {
 
         portfolioList = (ListView) v.findViewById(R.id.listView);
 
-
-        //portfolio = new Portfolio();
-//        portfolio.add(new Stock("Microsoft", "MSFT"));
-//        portfolio.add(new Stock("Google", "Goog"));
-
         Bundle bundle = this.getArguments();
         if (bundle != null) {
             portfolio = (Portfolio) bundle.getSerializable(BUNDLE_KEY);
@@ -55,7 +60,10 @@ public class PortfolioFragment extends Fragment {
 
         PortfolioAdapter adapter = new PortfolioAdapter(getContext(),portfolio);
         portfolioList.setAdapter(adapter);
-        //addStock(new Stock("TESLA", "TSLA"));
+
+        File dir = getActivity().getFilesDir();
+        file = new File(dir, fileName);
+
 
         portfolioList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -93,6 +101,23 @@ public class PortfolioFragment extends Fragment {
 
     public void addStock(Stock stock) {
         portfolio.add(stock);
+        writeFile(stock);
         ((PortfolioAdapter) portfolioList.getAdapter()).notifyDataSetChanged();
+    }
+
+
+    public void writeFile(Stock stock) {
+        try {
+            Writer writer;
+            writer = new BufferedWriter(new FileWriter(file, true));
+            //FileWriter writer = new FileWriter(file);
+
+            writer.append(stock.getSymbol());
+            writer.append('\n');
+            writer.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

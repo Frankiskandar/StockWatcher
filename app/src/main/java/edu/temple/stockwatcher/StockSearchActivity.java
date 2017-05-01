@@ -11,8 +11,6 @@ public class StockSearchActivity extends Activity {
 
     AutoCompleteTextView stockSearchText;
     Button addButton;
-    public static int SYMBOL_EXISTS = 20;
-    public static String STOCK_SYMBOL = "stock_symbol";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

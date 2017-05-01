@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,14 +15,11 @@ import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import android.util.Log;
-import java.util.logging.Logger;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.logging.Logger;
 
 
 public class StockDetailsFragment extends Fragment {
@@ -33,6 +31,7 @@ public class StockDetailsFragment extends Fragment {
     String price;
     String baseURL = "http://dev.markitondemand.com/MODApis/Api/v2/Quote/json/?symbol=";
     Logger log = Logger.getAnonymousLogger();
+
 
 
     public StockDetailsFragment() {
@@ -56,8 +55,19 @@ public class StockDetailsFragment extends Fragment {
         Picasso.with(graphImageView.getContext()).load("https://chart.yahoo.com/z?t=1d&s="+stock.getSymbol()).into(graphImageView);
     }
 
+    public void showCompanyName(Stock stock) {
+        companyName.setText(String.valueOf(stock.getCompanyName()));
+    }
+
+    public void showStockPrice(Stock stock) {
+        stockPrice.setText(String.valueOf(stock.getPrice()));
+
+    }
+
     public void showStockInfo(Stock stock) {
+        //showCompanyName(stock);
         showGraph(stock);
+        //showStockPrice(stock);
         retrieveStockPrice(stock);
     }
 
