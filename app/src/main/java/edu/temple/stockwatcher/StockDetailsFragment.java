@@ -51,19 +51,17 @@ public class StockDetailsFragment extends Fragment {
         Picasso.with(graphImageView.getContext()).load("https://chart.yahoo.com/z?t=1d&s="+stock.getSymbol()).into(graphImageView);
     }
 
-    public void showCompanyName(Stock stock) {
-        companyName.setText(String.valueOf(stock.getCompanyName()));
-    }
-
-    public void showStockPrice(Stock stock) {
-        stockPrice.setText(String.valueOf(stock.getPrice()));
-
-    }
+//    public void showCompanyName(Stock stock) {
+//        companyName.setText(String.valueOf(stock.getCompanyName()));
+//    }
+//
+//    public void showStockPrice(Stock stock) {
+//        stockPrice.setText(String.valueOf(stock.getPrice()));
+//
+//    }
 
     public void showStockInfo(Stock stock) {
-        //showCompanyName(stock);
         showGraph(stock);
-        //showStockPrice(stock);
         retrieveStockPrice(stock);
     }
 
@@ -75,7 +73,6 @@ public class StockDetailsFragment extends Fragment {
             public void run(){
                 log.info("run() is called");
                 try {
-                    //while (!t.isInterrupted()) { //constantly run as long as the fragment isnt closed
                         URL url = new URL(urlString);
                         BufferedReader reader = new BufferedReader(
                             new InputStreamReader(
@@ -91,10 +88,7 @@ public class StockDetailsFragment extends Fragment {
                         msg.obj = response;
 
                         Log.d("downloaded data", response);
-                        responseHandler.sendMessage(msg);// update stock's price
-                        //Thread.sleep(6000); //sleep for 1 minute
-
-                    //}
+                        responseHandler.sendMessage(msg);// get stock's price and company name
                 } catch(Exception e){
                     e.printStackTrace();
                 }

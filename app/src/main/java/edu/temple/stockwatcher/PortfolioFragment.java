@@ -57,7 +57,7 @@ public class PortfolioFragment extends Fragment {
         PortfolioAdapter adapter = new PortfolioAdapter(getContext(),portfolio);
         portfolioList.setAdapter(adapter);
 
-        if (portfolio.size()==0) {
+        if (portfolio.size()==0) { //dont show textview if no portofolio exists
             emptyPortfolioTV.setVisibility(View.VISIBLE);
         } else {
             emptyPortfolioTV.setVisibility(View.GONE);
@@ -69,11 +69,9 @@ public class PortfolioFragment extends Fragment {
         portfolioList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                ((stockSelectedInterface) getActivity()).stockSelected(portfolio.get(i));
+                ((stockSelectedInterface) getActivity()).stockSelected(portfolio.get(i)); //send to main
             }
         });
-
-
         return v;
     }
 
@@ -103,14 +101,14 @@ public class PortfolioFragment extends Fragment {
     public void addStock(Stock stock) {
         portfolio.add(stock); //add stock to portfolio object
         writeFile(stock); //write the symbol to file
-        emptyPortfolioTV.setVisibility(View.GONE);
+        emptyPortfolioTV.setVisibility(View.GONE); // dont show this textview when we add a stock to portfolio
         ((PortfolioAdapter) portfolioList.getAdapter()).notifyDataSetChanged();
     }
 
     public void deletePortfolio() {
-        portfolio.remove(); //remove stock arraylist inside portfolio object so the is no content at all
+        portfolio.remove(); //remove stock arraylist inside portfolio object so there is no content at all
         ((PortfolioAdapter) portfolioList.getAdapter()).notifyDataSetChanged();
-        emptyPortfolioTV.findViewById(View.VISIBLE);
+        emptyPortfolioTV.findViewById(View.VISIBLE);//when no portfolio exists, show the textview
     }
 
 

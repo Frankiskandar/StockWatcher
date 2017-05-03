@@ -33,5 +33,5 @@ public class Portfolio implements Serializable {
 
     public void remove() {
         this.stocks.clear();
-    }
+    } // to remove the content of array list
 }

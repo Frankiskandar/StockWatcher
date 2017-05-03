@@ -31,8 +31,6 @@ public class MainActivity extends AppCompatActivity implements PortfolioFragment
         setContentView(R.layout.activity_main);
 
         portfolio = new Portfolio();
-//        portfolio.add(new Stock("Microsoft", "MSFT"));
-//        portfolio.add(new Stock("Google", "Goog"));
 
         twoPanes = (findViewById(R.id.stockdetails_frag)!= null);
         receiver = new StockDetailsFragment();
@@ -46,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements PortfolioFragment
                 BufferedReader br = new BufferedReader(new FileReader(file));
                 String line;
                 while ((line = br.readLine()) != null) {
-                    portfolio.add(new Stock("", line.toString()));
+                    portfolio.add(new Stock("", line.toString())); //read the stock and populate the portfolio object
                 }
                 br.close();
             } catch (IOException e) {
@@ -98,10 +96,10 @@ public class MainActivity extends AppCompatActivity implements PortfolioFragment
                         sender.deletePortfolio(); // clear portfolio inside portfragment and notify the adapter
                         Toast.makeText(getApplicationContext(), R.string.portfolio_deleted, Toast.LENGTH_SHORT).show();
                     } else {
-                        log.info("No file to delete: " + deleted);
+                        log.info("file.delete() result: " + deleted);
                     }
                 } else {
-                    log.info("file DNE");
+                    log.info("no file to delete");
                     Toast.makeText(getApplicationContext(), R.string.no_portfolio_file, Toast.LENGTH_SHORT).show();
                 }
                 return true;
@@ -127,11 +125,11 @@ public class MainActivity extends AppCompatActivity implements PortfolioFragment
         if (!twoPanes){
             fragTransition();
         }
-        receiver.showStockInfo(stock);
+        receiver.showStockInfo(stock);// show name, price, graph inside stockdetails frag
         getFragmentManager().executePendingTransactions();
     }
 
-    private void searchPopUp() { //popup add activity
+    private void searchPopUp() { //popup search activity
         Intent intent = new Intent(this, StockSearchActivity.class);
         startActivityForResult(intent, POPUP_ACTIVITY);
     }
@@ -140,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements PortfolioFragment
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == POPUP_ACTIVITY) { //receive stock symbol based on user input from popup activity
+        if (requestCode == POPUP_ACTIVITY) { //receive stock symbol based on user input from StockSearch activity
             if (resultCode == RESULT_OK) {
                 newStock = data.getStringExtra("symbol");
                 sender.addStock(new Stock("", newStock));

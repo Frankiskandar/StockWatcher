@@ -23,9 +23,9 @@ public class StockSearchActivity extends Activity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!stockSearchText.getText().toString().isEmpty()) {
+                if (!stockSearchText.getText().toString().isEmpty()) { // if the text field is not empty
                     System.out.println(stockSearchText.getText().toString());
-                    String toSend = stockSearchText.getText().toString();
+                    String toSend = stockSearchText.getText().toString(); //send the string in the textfield as intent to mainActivity
                     Intent passIntent = new Intent();
                     passIntent.putExtra("symbol", toSend);
                     setResult(RESULT_OK, passIntent);
