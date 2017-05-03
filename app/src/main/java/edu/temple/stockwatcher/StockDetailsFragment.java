@@ -111,7 +111,7 @@ public class StockDetailsFragment extends Fragment {
                 String price = blockObject.getString("LastPrice");
 
                 companyName.setText(name);
-                stockPrice.setText(price);
+                stockPrice.setText("$"+price);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
