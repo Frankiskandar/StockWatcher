@@ -5,5 +5,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_stock_search">StockSearchActivity</string>
     <string name="empty_portfolio">Your portfolio is empty, tap on + button to add new stock</string>
-
+    <string name="company_name">Company\'s name</string>
+    <string name="stock_price">Stock price</string>
+    <string name="no_portfolio_file">No Portfolio Exists</string>
+    <string name="portfolio_deleted">Portfolio Cleared</string>
 </resources>

@@ -75,7 +75,7 @@ public class StockDetailsFragment extends Fragment {
             public void run(){
                 log.info("run() is called");
                 try {
-                    while (!t.isInterrupted()) { //constantly run as long as the fragment isnt closed
+                    //while (!t.isInterrupted()) { //constantly run as long as the fragment isnt closed
                         URL url = new URL(urlString);
                         BufferedReader reader = new BufferedReader(
                             new InputStreamReader(
@@ -92,8 +92,9 @@ public class StockDetailsFragment extends Fragment {
 
                         Log.d("downloaded data", response);
                         responseHandler.sendMessage(msg);// update stock's price
-                        Thread.sleep(6000); //sleep for 1 minute
-                    }
+                        //Thread.sleep(6000); //sleep for 1 minute
+
+                    //}
                 } catch(Exception e){
                     e.printStackTrace();
                 }
@@ -109,7 +110,7 @@ public class StockDetailsFragment extends Fragment {
                 JSONObject blockObject = new JSONObject((String) msg.obj);
                 String name = blockObject.getString("Name");
                 String price = blockObject.getString("LastPrice");
-
+                Log.d("responseHandler:", "response handler is called");
                 companyName.setText(name);
                 stockPrice.setText("$"+price);
             } catch (JSONException e) {

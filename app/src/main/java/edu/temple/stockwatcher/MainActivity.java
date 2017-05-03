@@ -96,13 +96,13 @@ public class MainActivity extends AppCompatActivity implements PortfolioFragment
                         log.info("stockList file deleted ");
                         portfolio.remove(); //clear portfolio object, overkill with below?
                         sender.deletePortfolio(); // clear portfolio inside portfragment and notify the adapter
-                        Toast.makeText(getApplicationContext(), "Portfolio Cleared cleared", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), R.string.portfolio_deleted, Toast.LENGTH_SHORT).show();
                     } else {
                         log.info("No file to delete: " + deleted);
                     }
                 } else {
                     log.info("file DNE");
-                    Toast.makeText(getApplicationContext(), "No portfolio exists", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.no_portfolio_file, Toast.LENGTH_SHORT).show();
                 }
                 return true;
 

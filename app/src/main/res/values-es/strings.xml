@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">StockWatcher</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_stock_search">StockSearchActivity</string>
+    <string name="empty_portfolio">Su cartera está vacía, puntee en + botón para añadir nuevas acciones</string>
+    <string name="company_name">Nombre de la Compania</string>
+    <string name="stock_price">Precio de Mercado</string>
+    <string name="no_portfolio_file">No existe ninguna cartera</string>
+    <string name="portfolio_deleted">Cartera suprimida</string>
+
+</resources>

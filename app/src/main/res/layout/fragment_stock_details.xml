@@ -15,7 +15,7 @@
             android:id="@+id/stock_name"
             android:layout_width="match_parent"
             android:layout_height="39dp"
-            android:text="name"
+            android:text="@string/company_name"
             android:textSize="25dp"
             android:gravity="center"/>
 
@@ -28,7 +28,7 @@
             android:id="@+id/stock_price"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="price"
+            android:text="@string/stock_price"
             android:gravity="center"
             android:textSize="30dp"
             android:layout_weight="0.3"/>
