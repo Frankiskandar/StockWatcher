@@ -30,4 +30,8 @@ public class Portfolio implements Serializable {
     public int size() {
         return stocks.size();
     }
+
+    public void remove() {
+        this.stocks.clear();
+    }
 }

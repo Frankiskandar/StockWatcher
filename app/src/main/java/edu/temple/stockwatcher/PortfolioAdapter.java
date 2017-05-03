@@ -37,9 +37,9 @@ public class PortfolioAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        TextView tv = new TextView(context);// must provide context
+        TextView tv = new TextView(context);
 
-        //set its value to be object
+        //show the stock symbol only
         tv.setText(portfolio.get(i).getSymbol());
         return tv;
     }

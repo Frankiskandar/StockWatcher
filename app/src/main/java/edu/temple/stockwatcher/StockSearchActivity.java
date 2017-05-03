@@ -31,7 +31,7 @@ public class StockSearchActivity extends Activity {
                     setResult(RESULT_OK, passIntent);
                     finish();
                 } else {
-                    //Toast.makeText(StockSearchActivity.class, "Symbol does not exist", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), "Symbol does not exist", Toast.LENGTH_SHORT).show();
                     System.out.println("failed");
                 }
             }

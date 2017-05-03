@@ -33,7 +33,6 @@ public class StockDetailsFragment extends Fragment {
     Logger log = Logger.getAnonymousLogger();
 
 
-
     public StockDetailsFragment() {
         // Required empty public constructor
     }
@@ -51,7 +50,7 @@ public class StockDetailsFragment extends Fragment {
         return v;
     }
 
-    public void showGraph(Stock stock) {
+    public void showGraph(Stock stock) { //show graph
         Picasso.with(graphImageView.getContext()).load("https://chart.yahoo.com/z?t=1d&s="+stock.getSymbol()).into(graphImageView);
     }
 
@@ -98,7 +97,6 @@ public class StockDetailsFragment extends Fragment {
                 } catch(Exception e){
                     e.printStackTrace();
                 }
-
             }
         };
         t.start();

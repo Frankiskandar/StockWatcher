@@ -9,13 +9,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.Writer;
 import java.io.BufferedWriter;
-import java.io.FileReader;
+import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
@@ -23,20 +20,15 @@ import java.util.logging.Logger;
 
 public class PortfolioFragment extends Fragment {
 
-    //private OnFragmentInteractionListener mListener;
 
     stockSelectedInterface parent;
     ListView portfolioList;
     Portfolio portfolio;
     public static String BUNDLE_KEY = "portfolio";
     Logger log = Logger.getAnonymousLogger();
-    String cname;
-    String cprice;
     ArrayList<String> symbolList;
     String fileName = "stockList";
     File file;
-
-
 
     public PortfolioFragment() {
         // Required empty public constructor
@@ -53,17 +45,14 @@ public class PortfolioFragment extends Fragment {
 
         Bundle bundle = this.getArguments();
         if (bundle != null) {
-            portfolio = (Portfolio) bundle.getSerializable(BUNDLE_KEY);
+            portfolio = (Portfolio) bundle.getSerializable(BUNDLE_KEY); //receives portfolio object from main activity
         }
-
-        System.out.println(portfolio.size());
-
+        //set up adapter
         PortfolioAdapter adapter = new PortfolioAdapter(getContext(),portfolio);
         portfolioList.setAdapter(adapter);
 
         File dir = getActivity().getFilesDir();
         file = new File(dir, fileName);
-
 
         portfolioList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -100,13 +89,18 @@ public class PortfolioFragment extends Fragment {
     }
 
     public void addStock(Stock stock) {
-        portfolio.add(stock);
-        writeFile(stock);
+        portfolio.add(stock); //add stock to portfolio object
+        writeFile(stock); //write the symbol to file
+        ((PortfolioAdapter) portfolioList.getAdapter()).notifyDataSetChanged();
+    }
+
+    public void deletePortfolio() {
+        portfolio.remove(); //remove stock arraylist inside portfolio object so the is no content at all
         ((PortfolioAdapter) portfolioList.getAdapter()).notifyDataSetChanged();
     }
 
 
-    public void writeFile(Stock stock) {
+    public void writeFile(Stock stock) { // append new stock to our file
         try {
             Writer writer;
             writer = new BufferedWriter(new FileWriter(file, true));
