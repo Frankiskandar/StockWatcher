@@ -10,12 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.squareup.picasso.Picasso;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -29,8 +26,8 @@ public class StockDetailsFragment extends Fragment {
     TextView companyName;
     TextView stockPrice;
     String price;
-    String baseURL = "http://dev.markitondemand.com/MODApis/Api/v2/Quote/json/?symbol=";
     Logger log = Logger.getAnonymousLogger();
+    Thread t;
 
 
     public StockDetailsFragment() {
@@ -73,27 +70,30 @@ public class StockDetailsFragment extends Fragment {
     public void retrieveStockPrice(Stock stock){
         log.info("retrieveStockPriceData");
         final String urlString = "http://dev.markitondemand.com/MODApis/Api/v2/Quote/json/?symbol=" + stock.getSymbol();
-        Thread t = new Thread(){
+        t  = new Thread(){
             @Override
             public void run(){
                 log.info("run() is called");
                 try {
-                    URL url = new URL(urlString);
-                    BufferedReader reader = new BufferedReader(
+                    while (!t.isInterrupted()) { //constantly run as long as the fragment isnt closed
+                        URL url = new URL(urlString);
+                        BufferedReader reader = new BufferedReader(
                             new InputStreamReader(
                                     url.openStream()));
-                    String tmpString = "";
-                    String response = "";
-                    while (tmpString != null) {
-                        response.concat(tmpString);
-                        response = response + tmpString;
-                        tmpString = reader.readLine();
-                    }
-                    Message msg = Message.obtain();
-                    msg.obj = response;
+                        String tmpString = "";
+                        String response = "";
+                        while (tmpString != null) {
+                            response.concat(tmpString);
+                            response = response + tmpString;
+                            tmpString = reader.readLine();
+                        }
+                        Message msg = Message.obtain();
+                        msg.obj = response;
 
-                    Log.d("downloaded data", response);
-                    responseHandler.sendMessage(msg);
+                        Log.d("downloaded data", response);
+                        responseHandler.sendMessage(msg);// update stock's price
+                        Thread.sleep(6000); //sleep for 1 minute
+                    }
                 } catch(Exception e){
                     e.printStackTrace();
                 }
@@ -118,6 +118,14 @@ public class StockDetailsFragment extends Fragment {
             return true;
         }
     });
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        if(t != null){
+            t.interrupt(); //stop the thread after the fragment is closed
+        }
+    }
 
 
 
