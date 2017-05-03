@@ -41,6 +41,7 @@ public class PortfolioAdapter extends BaseAdapter {
 
         //show the stock symbol only
         tv.setText(portfolio.get(i).getSymbol());
+        tv.setTextSize(20);
         return tv;
     }
 }

@@ -4,6 +4,12 @@
     android:layout_height="match_parent"
     tools:context="edu.temple.stockwatcher.PortfolioFragment">
 
+    <TextView
+        android:id="@+id/notif_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/empty_portfolio" />
+
 <ListView
     android:id="@+id/listView"
     android:layout_width="match_parent"

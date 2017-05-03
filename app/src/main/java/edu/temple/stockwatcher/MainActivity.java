@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -17,7 +16,6 @@ import java.util.logging.Logger;
 public class MainActivity extends AppCompatActivity implements PortfolioFragment.stockSelectedInterface {
 
     StockDetailsFragment receiver;
-    PortfolioFragment portfolioFragment;
     PortfolioFragment sender;
     boolean twoPanes;
     private final int POPUP_ACTIVITY = 1;
@@ -56,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements PortfolioFragment
             }
         } else { //if file doesnt exists
             log.info("No portfolio exists when we open the program");
+
         }
 
         Bundle bundle = new Bundle();
@@ -95,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements PortfolioFragment
                     log.info("file exists");
                     if(deleted = file.delete()){
                         log.info("stockList file deleted ");
-                        portfolio.remove(); //clear portofolio object, overkill with below?
+                        portfolio.remove(); //clear portfolio object, overkill with below?
                         sender.deletePortfolio(); // clear portfolio inside portfragment and notify the adapter
                         Toast.makeText(getApplicationContext(), "Portfolio Cleared cleared", Toast.LENGTH_SHORT).show();
                     } else {

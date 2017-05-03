@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -29,6 +30,7 @@ public class PortfolioFragment extends Fragment {
     ArrayList<String> symbolList;
     String fileName = "stockList";
     File file;
+    TextView emptyPortfolioTV;
 
     public PortfolioFragment() {
         // Required empty public constructor
@@ -40,6 +42,8 @@ public class PortfolioFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_portfolio, container, false);
+        emptyPortfolioTV = (TextView) v.findViewById(R.id.notif_textView);
+
 
         portfolioList = (ListView) v.findViewById(R.id.listView);
 
@@ -47,9 +51,17 @@ public class PortfolioFragment extends Fragment {
         if (bundle != null) {
             portfolio = (Portfolio) bundle.getSerializable(BUNDLE_KEY); //receives portfolio object from main activity
         }
+
+
         //set up adapter
         PortfolioAdapter adapter = new PortfolioAdapter(getContext(),portfolio);
         portfolioList.setAdapter(adapter);
+
+        if (portfolio.size()==0) {
+            emptyPortfolioTV.setVisibility(View.VISIBLE);
+        } else {
+            emptyPortfolioTV.setVisibility(View.GONE);
+        }
 
         File dir = getActivity().getFilesDir();
         file = new File(dir, fileName);
@@ -91,12 +103,14 @@ public class PortfolioFragment extends Fragment {
     public void addStock(Stock stock) {
         portfolio.add(stock); //add stock to portfolio object
         writeFile(stock); //write the symbol to file
+        emptyPortfolioTV.setVisibility(View.GONE);
         ((PortfolioAdapter) portfolioList.getAdapter()).notifyDataSetChanged();
     }
 
     public void deletePortfolio() {
         portfolio.remove(); //remove stock arraylist inside portfolio object so the is no content at all
         ((PortfolioAdapter) portfolioList.getAdapter()).notifyDataSetChanged();
+        emptyPortfolioTV.findViewById(View.VISIBLE);
     }
 
 
