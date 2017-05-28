@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="espresso-core-2.2.2">
     <CLASSES>
-      <root url="file://$USER_HOME$/.android/build-cache/eca1f8c877118c1c827cc6492055cd60c711ff26/output/res" />
-      <root url="jar://$USER_HOME$/.android/build-cache/eca1f8c877118c1c827cc6492055cd60c711ff26/output/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/0ad9d012810e8a49dd3a9334f319ec95794f1353/output/res" />
+      <root url="jar://$USER_HOME$/.android/build-cache/0ad9d012810e8a49dd3a9334f319ec95794f1353/output/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
