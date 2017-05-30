@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements PortfolioFragment
                 .commit();
 
         receiver = new StockDetailsFragment();
+
         //if stockdetails fragment exists show the fragment
         if(twoPanes){
             getFragmentManager()
@@ -74,19 +75,19 @@ public class MainActivity extends AppCompatActivity implements PortfolioFragment
         }
     }
 
-    @Override
+    @Override //to show the add and trash button
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.action_bar, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item) { //functionality for each menu button
         switch(item.getItemId()) {
-            case R.id.add_button :
+            case R.id.add_button : //add button
                 searchPopUp();
                 return true;
-            case R.id.trash_button :
+            case R.id.trash_button :  //trash button will delete the stock list file
                 boolean deleted;
                 if(file.exists()){
                     log.info("file exists");
@@ -141,10 +142,10 @@ public class MainActivity extends AppCompatActivity implements PortfolioFragment
         if (requestCode == POPUP_ACTIVITY) { //receive stock symbol based on user input from StockSearch activity
             if (resultCode == RESULT_OK) {
                 newStock = data.getStringExtra("symbol");
-                sender.addStock(new Stock("", newStock));
+                sender.addStock(new Stock("", newStock)); //add the new stock symbol
                 System.out.println(data.getStringExtra("symbol"));
             }
-            else if (resultCode == RESULT_CANCELED) {
+            else if (resultCode == RESULT_CANCELED) { //if canceled, do nothing
                 return;
             }
         }

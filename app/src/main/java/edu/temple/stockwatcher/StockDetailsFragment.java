@@ -35,7 +35,7 @@ public class StockDetailsFragment extends Fragment {
     }
 
 
-    @Override
+    @Override //screen will show company name, chart, stock price
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_stock_details, container, false);
@@ -60,12 +60,15 @@ public class StockDetailsFragment extends Fragment {
 //
 //    }
 
+    /*
+    when a stock symbol is clicked on portfolio fragment, this method will be called
+     */
     public void showStockInfo(Stock stock) {
         showGraph(stock);
         retrieveStockPrice(stock);
     }
 
-    public void retrieveStockPrice(Stock stock){
+    public void retrieveStockPrice(Stock stock){ //to get stock name and price from api
         log.info("retrieveStockPriceData");
         final String urlString = "http://dev.markitondemand.com/MODApis/Api/v2/Quote/json/?symbol=" + stock.getSymbol();
         t  = new Thread(){
@@ -96,7 +99,7 @@ public class StockDetailsFragment extends Fragment {
         };
         t.start();
     }
-
+    //thread cant access UI, so we need handler to change company name and stock price on the screen
     Handler responseHandler = new Handler(new Handler.Callback(){
         @Override
         public boolean handleMessage(Message msg){

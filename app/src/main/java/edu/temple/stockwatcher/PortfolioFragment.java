@@ -57,7 +57,7 @@ public class PortfolioFragment extends Fragment {
         PortfolioAdapter adapter = new PortfolioAdapter(getContext(),portfolio);
         portfolioList.setAdapter(adapter);
 
-        if (portfolio.size()==0) { //dont show textview if no portofolio exists
+        if (portfolio.size()==0) { //show the instruction textview if no portofolio exists
             emptyPortfolioTV.setVisibility(View.VISIBLE);
         } else {
             emptyPortfolioTV.setVisibility(View.GONE);
@@ -66,9 +66,11 @@ public class PortfolioFragment extends Fragment {
         File dir = getActivity().getFilesDir();
         file = new File(dir, fileName);
 
+        //if an item inside adapter is clicked, in this case a stock symbol
         portfolioList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                //main activity must implement an interface from this frag
                 ((stockSelectedInterface) getActivity()).stockSelected(portfolio.get(i)); //send to main
             }
         });
@@ -93,7 +95,7 @@ public class PortfolioFragment extends Fragment {
         parent = null;
     }
 
-
+    //need an interface for fragment to activity transaction
     public interface stockSelectedInterface {
         public void stockSelected(Stock stock);
     }
